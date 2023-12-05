@@ -35,8 +35,9 @@ public class ReportController {
     }
 
     @DeleteMapping("/deleteReport/{id}")
-    public void deleteById(@PathVariable long id){
+    public String deleteById(@PathVariable long id){
         reportServiceImp.deleteReport(id);
+        return "Report is deleted";
     }
     @PostMapping("/addReportAndAssignUser/{iduser}")
     public Report addReportandAssaginItToUser(@RequestBody Report Report,@PathVariable long iduser){

@@ -35,12 +35,15 @@ public class BanController {
     }
 
     @DeleteMapping("/deleteBan/{id}")
-    public void deleteById(@PathVariable long id){
+    public String deleteById(@PathVariable long id){
         banServiceImp.deleteBan(id);
+        return "Ban is removed";
     }
     @PostMapping("/addBanAndAssignUser/{iduser}")
     public Ban addBanandAssaginItToUser(@RequestBody Ban ban,@PathVariable long iduser){
         return iban.addBanandAssaginItToUser(ban,iduser);
     }
+
+
 
 }

@@ -10,6 +10,8 @@ import javax.persistence.*;
 import java.io.Serializable;
 import java.time.Duration;
 import java.time.Instant;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -22,7 +24,8 @@ public class Ban implements Serializable {
 
     private Instant banStartTime = Instant.now() ;
 
-    private Duration banDuration ;
+    private LocalDate  banExpDate ;
+
 
     private String reason;
 
