@@ -9,10 +9,10 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>esprit.tn</groupId>
-    <artifactId>Events</artifactId>
+    <artifactId>ReportAndBanMs</artifactId>
     <version>1.0</version>
-    <name>Events</name>
-    <description>Events</description>
+    <name>ReportAndBanMs</name>
+    <description>ReportAndBanMs</description>
     <properties>
         <java.version>17</java.version>
         <spring-cloud.version>2021.0.8</spring-cloud.version>

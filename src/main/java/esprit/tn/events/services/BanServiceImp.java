@@ -67,14 +67,14 @@ public class BanServiceImp implements Iban{
     // idea is 99% right but need others work
     //room joining condition
     @Override
-    public boolean canUserJoinRoom(User user,Room room) {
+    public boolean canUserJoinRoom(User user,long idRoom) {
         //we get user with ban still going
-        Boolean heJoins =false;
+        boolean heJoins =false;
         LocalDate currentTime = LocalDate.now();
         List<Ban> activeBan = banRepository.findBanByBannedUserAndAndBanExpDateAfter(user,currentTime);
 
 //        for (Ban b:activeBan) {
-//            if (activeBan != null && user.getroom = room) { // this will be competed after integartion
+//            if (activeBan != null && user.getroom().idRoom = idRoom) { // this will be competed after integartion
 //                // User is still banned ----> he can't join the room
 //                heJoins =true;
 //                break;

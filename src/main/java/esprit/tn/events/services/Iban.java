@@ -14,5 +14,5 @@ public interface Iban {
     public Ban findByIdBan(long id);
     public void deleteBan(long id);
     public Ban addBanandAssaginItToUser(Ban ban , Long idUser);
-    public boolean canUserJoinRoom(User user , Room room) ;
+    public boolean canUserJoinRoom(User user ,long idRoom) ;
 }
