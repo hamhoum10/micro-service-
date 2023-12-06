@@ -10,4 +10,6 @@ public interface IUser {
     public List<User> findAllUsers();
     public User findById(Integer idU);
     public void deleteUser(Integer idU);
+
+    public List<User> searchByName(String firstName, String lastName);
 }

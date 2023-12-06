@@ -47,4 +47,9 @@ public class UserController {
     private void deleteUser(@PathVariable Integer idU){
         userServiceImp.deleteUser(idU);
     }
+
+    @GetMapping("/searchByName")
+    private List<User> searchByName(@RequestParam String firstName, @RequestParam String lastName) {
+        return userServiceImp.searchByName(firstName, lastName);
+    }
 }

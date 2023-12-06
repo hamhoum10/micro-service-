@@ -52,4 +52,9 @@ public class UserServiceImp implements IUser{
     public void deleteUser(Integer idU) {
         userRepository.deleteById(idU);
     }
+
+    @Override
+    public List<User> searchByName(String firstName, String lastName) {
+        return userRepository.findByFirstNameContainingAndLastNameContaining(firstName, lastName);
+    }
 }
