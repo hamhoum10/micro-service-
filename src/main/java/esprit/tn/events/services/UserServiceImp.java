@@ -18,8 +18,25 @@ public class UserServiceImp implements IUser{
 
     @Override
     public User updateUser(User u) {
-        return userRepository.save(u);
+        User existingUser = userRepository.findById(u.getId()).orElse(null);
+
+        if (existingUser != null) {
+            if (u.getFirstName() != null) {
+                existingUser.setFirstName(u.getFirstName());
+            }
+            if (u.getLastName() != null) {
+                existingUser.setLastName(u.getLastName());
+            }
+            if (u.getEmail() != null) {
+                existingUser.setEmail(u.getEmail());
+            }
+
+            return userRepository.save(existingUser);
+        }
+
+        return null;
     }
+
 
     @Override
     public List<User> findAllUsers() {
