@@ -3,6 +3,8 @@ package com.example.projet_micro_service;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 @AllArgsConstructor
 @Service
 public class RoomService implements IRoom{
@@ -13,6 +15,7 @@ public class RoomService implements IRoom{
 
     @Override
     public RoomEntity updateRoom(RoomEntity roomEntity) {
+
         return roomRepo.save(roomEntity);
     }
 
@@ -29,6 +32,12 @@ public class RoomService implements IRoom{
         room.setNBRMember(nbr);
         return roomRepo.save(room);
     }
+    @Override
+    public void decreasenbreroom(long id) {
+        RoomEntity room =roomRepo.findById(id).orElse(null);
+        room.setNBRMember(room.getNBRMember()-1);
+        roomRepo.save(room);
+    }
 
     @Override
     public void deleatRoom(long id) {
@@ -36,9 +45,15 @@ public class RoomService implements IRoom{
 
     }
 
+
+
     @Override
-    public void decreasenbreroom(long id,long nbr) {
-        RoomEntity room =roomRepo.findById(id).orElse(null);
-        room.setNBRMember(room.getNBRMember()-1);
+    public List<RoomEntity> getall() {
+        return roomRepo.findAll();
+    }
+
+    @Override
+    public RoomEntity getbyId(long id) {
+        return roomRepo.findById(id).orElse(null);
     }
 }
