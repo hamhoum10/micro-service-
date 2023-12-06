@@ -1,0 +1,64 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Commande{% endblock %}
+
+{% block body %}
+    <h1>Commande</h1>
+
+    <table class="my-6 text-2xl font-semibold text-gray-700 dark:text-gray-200">
+        <tbody>
+            <tr>
+                <th>Id</th>
+                <td>{{ commande.id }}</td>
+            </tr>
+            <tr>
+                <th>Id_panier</th>
+                <td>{{ commande.idPanier }}</td>
+            </tr>
+            <tr>
+                <th>Prenom</th>
+                <td>{{ commande.prenom }}</td>
+            </tr>
+            <tr>
+                <th>Nom</th>
+                <td>{{ commande.nom }}</td>
+            </tr>
+            <tr>
+                <th>Numero</th>
+                <td>{{ commande.numero }}</td>
+            </tr>
+            <tr>
+                <th>Status</th>
+                <td>{{ commande.status }}</td>
+            </tr>
+            <tr>
+                <th>Total_amount</th>
+                <td>{{ commande.totalAmount }}</td>
+            </tr>
+            <tr>
+                <th>Created_at</th>
+                <td>{{ commande.createdAt ? commande.createdAt|date('Y-m-d H:i:s') : '' }}</td>
+            </tr>
+            <tr>
+                <th>Codepostal</th>
+                <td>{{ commande.codepostal }}</td>
+            </tr>
+            <tr>
+                <th>Adresse</th>
+                <td>{{ commande.adresse }}</td>
+            </tr>
+            <tr>
+                <th>Staatu Livraison</th>
+                <td>{{ commande.statuLiv}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+    <a href="{{ path('app_commande_index') }}"class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg
+    active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">back to list</a>
+
+    <a href="{{ path('app_commande_edit', {'id': commande.id}) }}"class="px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg
+     active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">edit</a>
+
+    {{ include('commande/_delete_form.html.twig') }}
+{% endblock %}
