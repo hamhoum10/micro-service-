@@ -8,10 +8,7 @@ import lombok.Setter;
 import javax.persistence.*;
 
 import java.io.Serializable;
-import java.time.Duration;
-import java.time.Instant;
-import java.time.LocalDate;
-import java.time.LocalDateTime;
+import java.time.*;
 
 @Getter
 @Setter
@@ -24,7 +21,7 @@ public class Ban implements Serializable {
 
     private Instant banStartTime = Instant.now() ;
 
-    private LocalDate  banExpDate ;
+    private LocalDate  banExpDate = LocalDate.ofInstant(banStartTime, ZoneId.systemDefault()).plusDays(1);
 
 
     private String reason;
@@ -32,6 +29,8 @@ public class Ban implements Serializable {
     //el user eli klé el ban
     @ManyToOne
     private User bannedUser;
+
+
 
     //id mta room eli klé  fiha ban wala room me8ir relation ma table / wala direct mel user nodhklou lel room id
     //private Room room;
