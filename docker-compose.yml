@@ -1,0 +1,128 @@
+version: "2.2"
+services:
+
+  Gateway:
+    container_name: gateway
+    build:
+      context: ./
+      dockerfile: Docker-gateway
+    ports:
+      - "8081:8081"
+    hostname: localhost
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "gateway"
+    depends_on:
+      - Eureka
+
+  Chat:
+    container_name: chat
+    build:
+      context: ./
+      dockerfile: Docker-chat
+    ports:
+      - "8085:8085"
+    hostname: localhost
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "chat"
+    depends_on:
+      - Eureka
+
+  User:
+    container_name: user
+    build:
+      context: ./
+      dockerfile: Docker-user
+    ports:
+      - "8086:8086"
+    hostname: localhost
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_1:3306/user?autoReconnect=true&useSSL=false
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "user"
+    depends_on:
+      - Eureka
+      - docker-mysql_1
+
+  Room:
+    container_name: room
+    build:
+      context: ./
+      dockerfile: Docker-room
+    ports:
+      - "8087:8087"
+    hostname: localhost
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_2:3306/room?autoReconnect=true&useSSL=false
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "room"
+    depends_on:
+      - Eureka
+      - docker-mysql_2
+
+  ReportAndBanMicroService:
+    container_name: ReportAndBanMicroService
+    build:
+      context: ./
+      dockerfile: Docker-reportban
+    ports:
+      - "8088:8088"
+    hostname: localhost
+    environment:
+      - SPRING_DATASOURCE_URL=jdbc:mysql://docker-mysql_3:3306/reportAndBan?autoReconnect=true&useSSL=false
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "reportandban"
+    depends_on:
+      - Eureka
+      - docker-mysql_3
+
+  Notification:
+    container_name: notification
+    build:
+      context: ./
+      dockerfile: Docker-notification
+    ports:
+      - "8090:8090"
+    hostname: localhost
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/
+    image: "notification"
+    depends_on:
+      - Eureka
+
+  docker-mysql_1:
+    image: "mysql:5.6"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_DATABASE=user
+    ports:
+      - 3307:3306
+
+  docker-mysql_2:
+    image: "mysql:5.6"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_DATABASE=room
+    ports:
+      - 3308:3306
+
+  docker-mysql_3:
+    image: "mysql:5.6"
+    environment:
+      - MYSQL_ALLOW_EMPTY_PASSWORD=1
+      - MYSQL_DATABASE=reportAndBan
+    ports:
+      - 3309:3306
+
+  Eureka:
+    container_name: serviceregistry
+    build:
+      context: ./
+      dockerfile: Docker-eureka
+    ports:
+      - "8761:8761"
+    hostname: localhost
+    image: "eureka"
+    environment:
+      - EUREKA_CLIENT_SERVICEURL_DEFAULTZONE=http://serviceregistry:8761/eureka/

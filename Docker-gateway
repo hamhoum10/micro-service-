@@ -1,0 +1,6 @@
+FROM openjdk:17-jdk-alpine
+MAINTAINER ChatService
+ARG JAR_FILE=target/*.jar
+EXPOSE 8081
+COPY ./api-gateway-1.0.jar app.jar
+ENTRYPOINT ["java","-jar","/app.jar"]
