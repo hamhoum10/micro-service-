@@ -19,7 +19,11 @@ export class ReportService {
   constructor(private _http:HttpClient) { }
 
   addreport(report:Report):Observable<Report>{
-    return this._http.post<Report>('http://localhost:8081/reportandeport/addReport',report,httpOptions);
+    const headers = new HttpHeaders()
+      .append('Content-Type', 'application/json')
+      .append('Access-Control-Allow-Headers', 'Content-Type')
+      .append('Access-Control-Allow-Origin', '*');
+    return this._http.post<Report>('http://localhost:8081/reportandeport/addReport',report,{headers});
   }
 
   getAllreport():Observable<Report[]>{

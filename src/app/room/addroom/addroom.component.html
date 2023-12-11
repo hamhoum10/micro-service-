@@ -3,13 +3,13 @@
 <label class="formbold-form-label" >
 name
 </label>
-<input class="formbold-form-input"   name="roomname" type="text"
-       [(ngModel)]="room.nameRoom" #chambreName="ngModel" />
+<input class="formbold-form-input"   name="nameRoom" type="text"
+       [(ngModel)]="room.nameRoom" #nameRoom="ngModel" />
 <!--need to set user and local date  auto-->
 <label class="formbold-form-label" >
     limite mumber
 </label>
-<input class="formbold-form-input"   name="rommenumber" type="number"
-       [(ngModel)]="room.NBRMember" #chambreName="ngModel" />
+<input class="formbold-form-input"   name="nbrMember" type="number"
+       [(ngModel)]="room.nbrMember" #nbrMember="ngModel" />
     <button class="formbold-btn"  [disabled]="add.invalid">save</button>
 </form>

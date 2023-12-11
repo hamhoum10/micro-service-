@@ -13,10 +13,11 @@ const routes: Routes = [
   {path:'chat', component:ChatComponent},
   { path: 'affichenotif/:id', component: AffichenotifComponent },
   {path:'addroom',component:AddroomComponent},
-  {path:'editroom',component:UpdateRoomComponent},
+  {path:'editroom/:id',component:UpdateRoomComponent},
   {path:'getallroom',component:RoomsComponent},
   {path:'addban',component:BanComponent},
-  {path:'addrep',component:ReportComponent}
+  {path:'addrep',component:ReportComponent},
+
 ];
 
 @NgModule({

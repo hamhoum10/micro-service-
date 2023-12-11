@@ -17,6 +17,10 @@ export class RoomsComponent implements OnInit{
   }
 deleatRoom(id:number){
     this.roomService.deleatRoom(id).subscribe()
+      location.reload()
+}
+joinRoom(id:number,iduser:number){
+this.roomService.joinRoom(id,iduser).subscribe();
 }
 
 }

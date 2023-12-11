@@ -30,6 +30,9 @@ export class UpdateRoomComponent implements OnInit{
 
   updateroom(){
     this.roomService.updateRoom(this.room).subscribe()
+    alert("room updated")
+    location.assign("http://localhost:4200/getallroom")
+
   }
 
 }
